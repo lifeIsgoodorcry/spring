@@ -51,8 +51,7 @@ public class Test {
         ctClass.setSuperclass(aClass1);
 
          //设置导包吧
-         pool.importPackage("com.example.demo1.javassist");
-
+         pool.importPackage("com.example.demo1.javassit.Result");
 
 
 
@@ -77,8 +76,8 @@ public class Test {
         CtMethod call = new CtMethod(resultClass, "call", new CtClass[]{}, ctClass);
         call.setModifiers(Modifier.PUBLIC);
         call.setBody("{ System.out.println(\"执行call方法\");\n" +
-                "         com.example.demo1.javassit.Result result = new com.example.demo1.javassit.Result();\n" +
-                "        result.setData(\"123\");\n" +
+                "         Result result = new Result();\n" +
+                "        result.setData(\"123\");\n"   +
                 "        return  result;}");
         CtClass etype = pool.get("java.io.IOException");
         call.addCatch("{ System.out.println($e); throw $e; }", etype);
@@ -86,18 +85,18 @@ public class Test {
 
 
         // 模仿写代码
-        CtMethod call1 = new CtMethod(resultClass, "call1", new CtClass[]{}, ctClass);
-        call1.setModifiers(Modifier.PUBLIC);
-        call1.setBody("{ System.out.println(\"执行call方法\");\n" +
-                "        String invoke = com.example.demo1.javassit.Xpocket.plugin(\"123\").invoke(\"命令\");\n" +
-                "        org.json.JSONObject jsonObject=new org.json.JSONObject();\n" +
-                         "jsonObject.put(\"123\",\"ewrew\");"+
-                "        com.example.demo1.javassit.Result result = new com.example.demo1.javassit.Result();\n" +
-                "        result.setData(invoke);\n" +
-                "        return result;}");
-        CtClass etype1 = pool.get("java.lang.Exception");
-        call1.addCatch("{ System.out.println($e); throw $e; }", etype1);
-        ctClass.addMethod(call1);
+//        CtMethod call1 = new CtMethod(resultClass, "call1", new CtClass[]{}, ctClass);
+//        call1.setModifiers(Modifier.PUBLIC);
+//        call1.setBody("{ System.out.println(\"执行call方法\");\n" +
+//                "        String invoke = com.example.demo1.javassit.Xpocket.plugin(\"123\").invoke(\"命令\");\n" +
+//                "        org.json.JSONObject jsonObject=new org.json.JSONObject();\n" +
+//                         "jsonObject.put(\"123\",\"ewrew\");"+
+//                "        com.example.demo1.javassit.Result result = new com.example.demo1.javassit.Result();\n" +
+//                "        result.setData(invoke);\n" +
+//                "        return result;}");
+//        CtClass etype1 = pool.get("java.lang.Exception");
+//        call1.addCatch("{ System.out.println($e); throw $e; }", etype1);
+//        ctClass.addMethod(call1);
 
 
 
@@ -118,8 +117,6 @@ public class Test {
         ctConstructor.setBody(buffer.toString());
         //把构造函数添加到新的类中
         ctClass.addConstructor(ctConstructor);
-
-
 
 
 
@@ -147,7 +144,7 @@ public class Test {
         fos.write(byteArr);
         fos.close();
 
-        Object o = obj.getClass().getMethod("call1", new Class[]{}).invoke(obj);
+        Object o = obj.getClass().getMethod("call", new Class[]{}).invoke(obj);
         Result  r= (Result) o;
         System.out.println(r);
     }
