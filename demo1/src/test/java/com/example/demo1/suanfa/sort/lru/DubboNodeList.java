@@ -87,6 +87,9 @@ public class DubboNodeList {
         list.delete(node1);
 
         list.iter();
+
+
+
     }
 
 

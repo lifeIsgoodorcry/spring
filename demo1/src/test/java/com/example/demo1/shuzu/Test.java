@@ -1,9 +1,13 @@
 package com.example.demo1.shuzu;
 
+import java.util.concurrent.CopyOnWriteArrayList;
+
 public class Test {
 
     public static void main(String[] args) {
         int[][] arr = {{1,2},{4,5},{6}};
+        CopyOnWriteArrayList list=new CopyOnWriteArrayList<>();
+        System.out.println();
         printArr1(arr);
     }
 
