@@ -5,6 +5,7 @@ import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
+import java.util.HashMap;
 
 public class Test {
 
@@ -119,7 +120,6 @@ public class Test {
         ctClass.addConstructor(ctConstructor);
 
 
-
         //添加自定义方法
         CtMethod ctMethod = new CtMethod(CtClass.voidType, "printInfo", new CtClass[]{}, ctClass);
         //为自定义方法设置修饰符
@@ -147,6 +147,10 @@ public class Test {
         Object o = obj.getClass().getMethod("call", new Class[]{}).invoke(obj);
         Result  r= (Result) o;
         System.out.println(r);
+
+
+
+
     }
 
 }
