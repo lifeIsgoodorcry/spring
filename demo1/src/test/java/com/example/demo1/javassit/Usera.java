@@ -10,7 +10,7 @@ public class Usera {
     private String data;
 
     public String getData() {
-        return data;
+        return data="9";
     }
 
     public void setData(String data) {

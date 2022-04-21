@@ -44,7 +44,7 @@ public class Test {
         ClassPool pool = ClassPool.getDefault(); //可以设置加载类的路径
 
         //通过ClassPool生成一个public新类Emp.java
-        CtClass ctClass = pool.makeClass("com.study.javassist.Emp");
+        CtClass ctClass = pool.makeClass("com.study.javassist.Emp1");
 
         //设置父类 （本地已经存在的类）
         CtClass aClass1 = pool.get("com.example.demo1.javassit.Usera");
@@ -52,8 +52,10 @@ public class Test {
         ctClass.setSuperclass(aClass1);
 
          //设置导包吧
+         pool.importPackage("java.util.ArrayList");
          pool.importPackage("com.example.demo1.javassit.Result");
-
+       // pool.importPackage("java.util.ArrayList");
+        pool.importPackage("java.util.");
 
 
         //添加字段属性
@@ -68,7 +70,7 @@ public class Test {
         ctClass.addField(enoField);
 
         CtClass resultClass = pool.get(Result.class.getName()); //类型
-       //复杂类型的属性
+        //复杂类型的属性
 
 //        CtField f = CtField.make("public com.example.demo1.javassit.Result z = null;",resultClass);
 //        ctClass.addField(f);
@@ -140,16 +142,13 @@ public class Test {
 
         //把生成的class文件写入文件
         byte[] byteArr = ctClass.toBytecode();
-        FileOutputStream fos = new FileOutputStream(new File("/Users/qiuhua/Downloads/projects/spring/demo1/Emp.class"));
+        FileOutputStream fos = new FileOutputStream(new File("/Users/qiuhua/Downloads/projects/spring/demo1/Emp1.class"));
         fos.write(byteArr);
         fos.close();
 
         Object o = obj.getClass().getMethod("call", new Class[]{}).invoke(obj);
         Result  r= (Result) o;
         System.out.println(r);
-
-
-
 
     }
 
