@@ -6,6 +6,7 @@ public class Usera {
         System.out.println("ss");
     }
 
+    private Boolean result = true;
 
     private String data;
 
@@ -18,4 +19,10 @@ public class Usera {
     }
 
 
+    public Boolean getResult() {
+        return result;
+    }
+    public Boolean setResult(boolean d) {
+        return this.result=d;
+    }
 }

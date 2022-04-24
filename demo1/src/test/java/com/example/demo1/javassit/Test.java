@@ -1,11 +1,9 @@
 package com.example.demo1.javassit;
 
 import javassist.*;
-import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileOutputStream;
-import java.util.HashMap;
 
 public class Test {
 
@@ -36,7 +34,7 @@ public class Test {
 
      JSONObject loadAvgObject = object.getJSONObject("LoadAvg");
      result.put(1,loadAvgObject.toJSONString());
-     * @param args
+     /* @param args
      * @throws Exception
      */
     public static void main(String[] args) throws Exception {
@@ -149,7 +147,5 @@ public class Test {
         Object o = obj.getClass().getMethod("call", new Class[]{}).invoke(obj);
         Result  r= (Result) o;
         System.out.println(r);
-
     }
-
 }
